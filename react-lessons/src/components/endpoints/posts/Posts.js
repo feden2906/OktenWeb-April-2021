@@ -1,4 +1,5 @@
 import { useEffect, useState} from 'react'
+import { Post } from './Post'
 
 export const Posts = () => {
     const [posts, setPosts] = useState([])
@@ -17,7 +18,7 @@ export const Posts = () => {
 
     return (
         <>
-        {posts.map(post => <li id={post.title}> {post.id} - {post.title}</li>)}
+        {posts.map(post => <Post key={post.id} item={post}/>)}
         </>
     )
 }
