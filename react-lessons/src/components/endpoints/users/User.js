@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { getUsersPosts } from '../../services/AllServices';
 
 export const User = ({ item }) => {
     const [posts, setPosts] = useState([])
     const [touglePosts, setTouglePosts] = useState(false)
 
-    const getPosts = async (id) => {
-        const resp = await fetch('http://jsonplaceholder.typicode.com/users/' + id + '/posts')
-        const json = await resp.json()
-
-        setPosts(json)
+    const showUsersPosts = (id) => {
+       
+        getUsersPosts(id).then(value => setPosts(value.data))
         setTouglePosts(!touglePosts)
-
     }
+
+
 
     return (
         <>
@@ -21,7 +21,7 @@ export const User = ({ item }) => {
 
                 {/* User`s posts */}
                 <button onClick={() => {
-                    getPosts(item.id)
+                    showUsersPosts(item.id)
                 }}>His posts</button>
 
                 {/* Users detalies */}

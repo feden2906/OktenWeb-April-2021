@@ -1,18 +1,16 @@
 import { useState } from 'react'
+import { getPostsComments } from '../../services/AllServices'
 
 export const Post = ({ item }) => {
 
     const [comments, setComments] = useState([])
     const [commentsSwitch, setCommentsSwitch] = useState(false)
 
-    const getComments = async () => {
-        const url = `https://jsonplaceholder.typicode.com/posts/${item.id}/comments`
-        const resp = await fetch(url)
-        const json = await resp.json()
+    const showPostsComments = (id) => {
 
-        setComments(json)
+        getPostsComments(id).then(value => setComments(value.data))
+
         setCommentsSwitch(!commentsSwitch)
-
     }
 
     return (
@@ -21,7 +19,7 @@ export const Post = ({ item }) => {
                 {item.title} - {item.id}
 
                 <button onClick={() => {
-                    getComments()
+                    showPostsComments(item.id)
                 }}>Show comments</button>
             </li>
 

@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react'
+import { getComments } from '../services/AllServices'
 
 export const Comments = () => {
     const [comments, setComments] = useState([])
 
-    const getComments = async () => {
-        const resp = await fetch('http://jsonplaceholder.typicode.com/comments')
-        const json = await resp.json()
-
-        setComments(json)
-    }
-
     useEffect(() => {
-        getComments()
+        getComments().then(value => setComments(value.data))
 
     }, [])
 

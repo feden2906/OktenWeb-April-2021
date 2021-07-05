@@ -1,18 +1,12 @@
 import { useEffect, useState} from 'react'
+import { getPosts } from '../../services/AllServices'
 import { Post } from './Post'
 
 export const Posts = () => {
     const [posts, setPosts] = useState([])
 
-    const getPosts = async () => {
-        const resp = await fetch('http://jsonplaceholder.typicode.com/posts')
-        const json = await resp.json()
-
-        setPosts(json)
-    }
-
     useEffect(() => {
-        getPosts()
+       getPosts().then(value => setPosts(value.data))
 
     }, [])
 

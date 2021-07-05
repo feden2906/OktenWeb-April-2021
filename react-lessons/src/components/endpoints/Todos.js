@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react'
+import { getTodos } from '../services/AllServices'
 
 export const Todos = () => {
     const [todos, setTodos] = useState([])
 
-    const getTodos = async () => {
-        const resp = await fetch('http://jsonplaceholder.typicode.com/todos')
-        const json = await resp.json()
-
-        setTodos(json)
-    }
-
     useEffect(() => {
-        getTodos()
+        getTodos().then(value => setTodos(value.data))
 
     }, [])
 

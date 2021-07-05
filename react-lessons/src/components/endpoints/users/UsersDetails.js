@@ -1,6 +1,7 @@
 import { useParams } from "react-router"
 import { useEffect, useState } from 'react'
 import { UserDetailsReturn } from "./UserDetailsReturn"
+import { getUser } from "../../services/AllServices"
 
 
 export const UserDetails = (props) => {
@@ -8,16 +9,15 @@ export const UserDetails = (props) => {
     const [user, setUser] = useState([])
 
 
-    const getUser = async (id) => {
+    const oneUser = async (id) => {
         if (!props.location.state) {
-            // From location.state
-            const url = 'http://jsonplaceholder.typicode.com/users/' + id
-            const resp = await fetch(url)
-            const json = await resp.json()
 
-            setUser({ ...json })
+            // From location.state
+            getUser(id).then(valeu => setUser(valeu.data))
             console.log('User from json.palace...');
+
         } else {
+            
             // From json.placeholder.com
             const {item} = props.location.state
 
@@ -28,7 +28,7 @@ export const UserDetails = (props) => {
 
     const { id } = useParams()
     useEffect(() => {
-        getUser(id)
+        oneUser(id)
 
     }, [])
 
