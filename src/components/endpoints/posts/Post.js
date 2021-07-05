@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import { getPostsComments } from '../../services/AllServices'
+import { useState } from 'react';
+import { getPostsComments } from '../../../services/AllServices';
 
 export const Post = ({ item }) => {
-
-    const [comments, setComments] = useState([])
-    const [commentsSwitch, setCommentsSwitch] = useState(false)
+    const [comments, setComments] = useState([]);
+    const [commentsSwitch, setCommentsSwitch] = useState(false);
 
     const showPostsComments = (id) => {
-
         getPostsComments(id).then(value => setComments(value.data))
-
         setCommentsSwitch(!commentsSwitch)
     }
 

@@ -1,12 +1,11 @@
-import { useEffect, useState} from 'react'
-import { getAlbums } from '../services/AllServices'
+import { useEffect, useState} from 'react';
+import { getAlbums } from '../../services/AllServices';
 
 export const Albums = () => {
     const [albums, setAlbums] = useState([])
 
     useEffect(() => {
-        getAlbums().then(value => setAlbums(value.data))
-
+        getAlbums().then(value => setAlbums(value.data));
     }, [])
 
     return (

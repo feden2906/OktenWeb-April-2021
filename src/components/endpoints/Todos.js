@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getTodos } from '../services/AllServices'
+import { getTodos } from '../../services/AllServices'
 
 export const Todos = () => {
     const [todos, setTodos] = useState([])

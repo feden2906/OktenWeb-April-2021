@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getComments } from '../services/AllServices'
+import { getComments } from '../../services/AllServices'
 
 export const Comments = () => {
     const [comments, setComments] = useState([])

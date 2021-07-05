@@ -1,7 +1,4 @@
-import {
-    Switch,
-    Route,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Posts } from "./endpoints/posts/Posts";
 import { Users } from "./endpoints/users/Users";
@@ -14,16 +11,16 @@ export const Routs = () => {
     return (
         <Switch>
             <Route path={'/users/:id'} component={UserDetails} />
+            <Route path='/users' component={Users} />
 
             <Route path='/posts' component={Posts} />
             <Route path='/comments' component={Comments} />
             <Route path='/albums' component={Albums} />
-            <Route path='/users' component={Users} />
             <Route path='/todos' component={Todos} />
 
             <Route path='/' exact>
                 Main page
-          </Route>
+            </Route>
         </Switch>
     )
 }

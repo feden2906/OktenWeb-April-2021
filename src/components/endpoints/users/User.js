@@ -1,21 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
-import { getUsersPosts } from '../../services/AllServices';
+import { Link } from 'react-router-dom';
+import { getUsersPosts } from '../../../services/AllServices';
 
 export const User = ({ item }) => {
     const [posts, setPosts] = useState([])
     const [touglePosts, setTouglePosts] = useState(false)
 
     const showUsersPosts = (id) => {
-       
         getUsersPosts(id).then(value => setPosts(value.data))
         setTouglePosts(!touglePosts)
     }
 
-
-
     return (
-        <>
+        <ul>
             <li>
                 {item.name}
 
@@ -25,10 +22,7 @@ export const User = ({ item }) => {
                 }}>His posts</button>
 
                 {/* Users detalies */}
-                <Link to={{
-                    pathname: '/users/' + item.id,
-                    state: { item }
-                }}>
+                <Link to={{ pathname: '/users/' + item.id, state: { item } }}>
                     User details
                 </Link>
 
@@ -36,8 +30,7 @@ export const User = ({ item }) => {
 
             {touglePosts && posts.map(post => <p key={post.id}>{post.title} - {post.id}</p>)}
             <br />
-
-        </>
+        </ul>
     )
 }
 
